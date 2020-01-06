@@ -1,0 +1,30 @@
+/*
+ * Copyright (c) 2018 - 2020, C19, all rights reserved.
+ *
+ * This software is licensed under under GPL-3.0-only or GPL-3.0-or-later, https://opensource.org/licenses/GPL-3.0
+ */
+
+//-*- coding: utf-8 -*-
+allprojects {
+    plugins.withType(JavaPlugin) {
+
+        sourceSets {
+            integration {
+                compileClasspath += sourceSets.main.output
+                runtimeClasspath += sourceSets.main.output
+            }
+        }
+        configurations {
+            integrationImplementation.extendsFrom testCompile
+            integrationRuntimeOnly.extendsFrom testRuntime
+        }
+
+        task intTest(type: Test) {
+            description = 'Run integration tests'
+            group = 'verification'
+            testClassesDirs = sourceSets.integration.output.classesDirs
+            classpath = sourceSets.integration.runtimeClasspath
+        }
+
+    }
+}
