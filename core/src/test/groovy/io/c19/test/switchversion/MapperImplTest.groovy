@@ -15,7 +15,7 @@ import spock.lang.Unroll
 
 class MapperImplTest extends Specification
 {
-    Mapper instance = new io.c19.test.ifversion.MapperImpl()
+    Mapper instance = new MapperImpl()
 
     def setup()
     {
